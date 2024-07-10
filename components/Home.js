@@ -50,14 +50,22 @@ useEffect(() => {
   fetch(`${backendurl}/movies`)
     .then(response => response.json())
     .then(data => {
-      setMoviesData(data);
+      setMoviesData(data.movies.results);
     });
 }, []);
 
-  const movies = moviesData.map((data, i) => {
-    const isLiked = likedMovies.some(movie => movie === data.title);
-    return <Movie key={i} updateLikedMovies={updateLikedMovies} isLiked={isLiked} title={data.title} overview={data.overview} poster={data.poster} voteAverage={data.voteAverage} voteCount={data.voteCount} />;
-  });
+const movies = moviesData.map((data, i) => {
+  const isLiked = likedMovies.some(movie => movie === data.title);
+  return <Movie 
+  key={i} 
+  updateLikedMovies={updateLikedMovies} 
+  isLiked={isLiked} 
+  title={data.title} 
+  overview={data.overview.length != 0 ? data.overview.slice(0,250)+'...' : 'Pas de description'} 
+  poster={'https://image.tmdb.org/t/p/original'+data.poster_path} 
+  voteAverage={data.vote_average} 
+  voteCount={data.vote_count} />;
+});
 
   return (
     <div className={styles.main}>
