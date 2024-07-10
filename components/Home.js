@@ -6,6 +6,8 @@ import Movie from './Movie';
 import 'antd/dist/antd.css';
 import styles from '../styles/Home.module.css';
 
+const backendurl='https://mymoviz-backend-git-main-patleserdevs-projects.vercel.app'
+
 function Home() {
   const [likedMovies, setLikedMovies] = useState([]);
 
@@ -45,7 +47,7 @@ function Home() {
 */
 const [moviesData,setMoviesData]=useState([])
 useEffect(() => {
-  fetch('http://localhost:3000/movies')
+  fetch(`${backendurl}/movies`)
     .then(response => response.json())
     .then(data => {
       setMoviesData(data);
