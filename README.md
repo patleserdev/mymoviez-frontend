@@ -1,1 +1,1 @@
-# mymoviez-frontend
+# mymoviz-frontend
